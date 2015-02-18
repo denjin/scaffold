@@ -1,8 +1,7 @@
 @extends('layouts.master')
 @section('header')
-    <h2>Welcome to Luma Candles</h2>
+    <h2>Web App Scaffold</h2>
 @stop
 @section('content')
-    <a href="/candles">Candles</a>
-    <a href="/news">Blog</a>
+    <a href="/news">Posts</a>
 @stop

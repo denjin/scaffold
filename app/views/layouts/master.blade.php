@@ -14,7 +14,7 @@
         <div class="container">
             <div class="page-header">
                 <div class="text-center">
-                    <h1>{{link_to('/', 'Luma Candles')}}</h1>
+                    <h1>{{link_to('/', 'Web App Scaffold')}}</h1>
                 </div>
                 <div class="text-right">
                     @if(Auth::check())
@@ -43,7 +43,6 @@
             @endif
             @yield('content')
             <div class="modal-footer">
-                <p>Content copyright Amy F Hudson 2015</p>
                 <p>Design and code copyright Chris Luffingham 2015</p>
             </div>
         </div>
