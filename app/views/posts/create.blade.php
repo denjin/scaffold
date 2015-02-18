@@ -2,35 +2,28 @@
 @extends('layouts.master')
 
 @section('content')
-    <div>
-        @if(Session::has('old_body'))
-            {{$body = strip_tags(Session::get('old_body'))}}
-            @else
-            {{$body = 'Body'}}
-        @endif
-
-        @if(Session::has('old_title'))
-            {{$title = Session::get('old_title')}}
-            @else
-            {{$title = 'Title'}}
-        @endif
-    </div>
 
 
     {{Form::open(array('action'=>'PostController@store'))}}
-    <input type="text" id="title" name="title">
-    <input type="text" id="body" name="body">
-    <input type="text" id="user_id" name="user_id" value="{{{Auth::user()->id}}}">
+    <input type="hidden" id="title" name="title">
+    <input type="hidden" id="body" name="body">
+    <input type="hidden" id="user_id" name="user_id" value="{{{Auth::user()->id}}}">
 
 
     <div class="title-editable" id="post-title">
+        <h2>
         @if(Session::has('old_title'))
-            {{Session::get('old_title')}}
+            @if(Session::get('old_title') == '')
+                Title
+            @else
+                {{Session::get('old_title')}}
+            @endif
         @else
-            <h2>{{$title}}</h2>
+            Title
         @endif
-
+        </h2>
     </div>
+
     @foreach($errors->get('title') as $message)
         <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>{{ $message }}</div>
     @endforeach
@@ -39,11 +32,17 @@
 
     <div class="body-editable" id="post-body">
         @if(Session::has('old_body'))
-            {{Session::get('old_body')}}
+            @if(Session::get('old_body') == '')
+                <p>Enter the body of your post.</p>
+            @else
+                {{Session::get('old_body')}}
+            @endif
         @else
-            {{$body}}
+            <p>Enter the body of your post.</p>
         @endif
     </div>
+
+
     @foreach($errors->get('body') as $message)
         <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>{{ $message }}</div>
     @endforeach

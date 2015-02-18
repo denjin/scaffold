@@ -18,7 +18,7 @@ class PostController extends BaseController {
 	public function show($slug) {
 		//find post by slug
 		//return View::make('posts.single')->with('posts', $this->post->find($id));
-		return View::make('posts.single')->with('posts', $this->post->findByKey('slug', $slug));
+		return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 
@@ -49,15 +49,14 @@ class PostController extends BaseController {
 
 
 	//Show the form for editing the specified resource.
-	public function edit($id)
-	{
-		//
+	public function edit($slug){
+		return View::make('posts.edit', array())->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 
 	//Update the specified resource in storage.
-	public function update($id) {
-		//
+	public function update() {
+		echo $this->post->update(Input::all());
 	}
 
 

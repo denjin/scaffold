@@ -9,33 +9,33 @@
 
     @if(Auth::check())
         <div id="auth">
-            <a href="{{url('news/'.$posts->slug.'/edit')}}">
+            <a href="{{url('news/'.$post->slug.'/edit')}}">
                 <span class="glyphicon glyphicon-edit"></span>Edit
             </a>
-            <a href="{{url('news/'.$posts->slug.'/delete')}}">
+            <a href="{{url('news/'.$post->slug.'/delete')}}">
                 <span class="glyphicon glyphicon-trash"></span>Delete
             </a>
         </div>
     @endif
 
     @if(Auth::check())
-        @if(Auth::user()->id == $posts->user_id)
+        @if(Auth::user()->id == $post->user_id)
             <div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span>You can edit this post.</div>
         @endif
     @endif
 
     <div id="title">
-        <h2>{{$posts->title}}</h2>
+        <h2>{{$post->title}}</h2>
     </div>
 
 
 
 
     <div id="content">
-        {{$posts->body}}
+        {{$post->body}}
     </div>
 
     <div class="panel-default" id="timestamps">
-        <p class="text-muted small">Post created: {{$posts->created_at->format('dS M Y \a\t G:i')}}<br />Last modified: {{$posts->updated_at->format('dS M Y \a\t G:i')}}</p>
+        <p class="text-muted small">Post created: {{$post->created_at->format('dS M Y \a\t G:i')}}<br />Last modified: {{$post->updated_at->format('dS M Y \a\t G:i')}}</p>
     </div>
 @stop
