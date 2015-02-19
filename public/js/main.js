@@ -16,8 +16,9 @@ $('body').on('click', '#form-submit', function(e) {
     $title = titleEditor.serialize();
     $body = bodyEditor.serialize();
     //set hidden form fields to be values inputted to clever editor divs
-    document.getElementById('title').value = $title['post-title']['value'];
-    document.getElementById('body').value = $body['post-body']['value'];
+    document.getElementById('post-form-title').value = $title['post-title']['value'];
+    document.getElementById('post-form-body').value = $body['post-body']['value'];
     //submit the form
-    document.getElementById('form').submit();
+    document.getElementById('post-form').submit();
+
 });

@@ -35,3 +35,4 @@ Route::get('logout', 'UserController@logout');
 
 
 Route::resource('news', 'PostController');
+Route::get('news/{post}/delete', 'PostController@delete');

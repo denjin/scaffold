@@ -33,27 +33,20 @@ class PostController extends BaseController {
 	}
 
 
-
-
-
-
-
-
-	//Show the form for editing the specified resource.
-	public function edit($slug){
-		return View::make('posts.edit', array())->with('post', $this->post->findByKey('slug', $slug));
-	}
-
-
 	//Update the specified resource in storage.
 	public function update() {
-		echo $this->post->update(Input::all());
+		return $this->post->update(Input::all());
+	}
+
+	//Show the form to delete a post
+	public function delete($slug) {
+		return View::make('posts.delete')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 
 	//Remove the specified resource from storage.
 	public function destroy($id) {
-		//
+		return $this->post->destroy($id);
 	}
 
 

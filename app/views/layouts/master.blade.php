@@ -11,7 +11,7 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="page-header">
                 <div class="text-center">
                     <h1>{{link_to('/', 'Web App Scaffold')}}</h1>
@@ -26,10 +26,11 @@
                 </div>
                 @yield('header')
             </div>
+        </div>
 
 
 
-
+        <div class="container">
 
             @if(Session::has('message'))
                 <div class="alert alert-success">
@@ -43,9 +44,10 @@
             @endif
             @yield('content')
             <div class="modal-footer">
-                <p>Design and code copyright Chris Luffingham 2015</p>
+                <p class="text-center text-muted">Design and code copyright Chris Luffingham 2015</p>
             </div>
         </div>
-        @include('editor')
+
+        @yield('footer')
     </body>
 </html>
