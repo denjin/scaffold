@@ -13,26 +13,31 @@ class EloquentPostRepository extends AbstractEloquentRepository implements PostR
     }
 
     public function store() {
-
+        //pre-sanitise the input data
+        $data = Input::all();
+        $data['title'] = trim(strip_tags($data['title']));
+        //build validation rules
         $rules = array(
             'title'=>   'required|unique:posts,title|min:5',
             'body'=>    'required'
         );
 
         //compare input against validation
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($data, $rules);
 
         //check if data is valid
         if ($validator->passes()) {
             //create new blog post
             $post = new Post();
-            $post->title = strip_tags(Input::get('title'));
+            $post->title = $data['title'];
             $post->body = Input::get('body');
             $post->user_id = Input::get('user_id');
             //save new post
             $post->save();
-            return Redirect::to('news/'.$post->slug)->with('message', 'Successfully created page.');
+            return Redirect::to('news/'.$post->slug)
+                ->with('message', 'Successfully created page.');
         } else {
+            //if data not valid, redirect to the form with errors and the sent data
             return Redirect::back()
                 ->with('error', 'Could not create your blog post')
                 ->withErrors($validator)
@@ -41,27 +46,33 @@ class EloquentPostRepository extends AbstractEloquentRepository implements PostR
     }
 
 
-    public function update($data) {
-        $data['title'] = strip_tags($data['title']);
+    public function update() {
+        //pre-sanitise the input data
+        $data = Input::all();
+        $data['title'] = trim(strip_tags($data['title']));
 
+        //build validation rules
         $rules = array(
             'title'=>   'required|unique:posts,title|min:5',
-            'body'=>    'required',
-            'user_id' => 'required'
+            'body'=>    'required'
         );
-        $validator = Validator::make($data, $rules);
+        //compare input against validation
+        $validator = Validator::make(Input::all(), $rules);
         if ($validator->passes()) {
+            //find the post that is to be updated
             $post = Post::findOrFail(Input::get('id'));
-            $post->title = Input::get('title');
+            $post->title = $data['title'];
             $post->body = Input::get('body');
+            //save the new data over the top
             $post->save();
+            //redirect back to the page
             return Redirect::to('news/'.$post->slug)->with('message', 'Successfully edited page!');
         } else {
+            //redirect back with errors and the sent data
             return Redirect::back()
-                ->with('error', 'Could not create your blog post')
+                ->with('error', 'Could not edit your blog post')
                 ->withErrors($validator)
-                ->with('old_title', $data['title'])
-                ->with('old_body', $data['body']);
+                ->withInput();
         }
     }
 }
