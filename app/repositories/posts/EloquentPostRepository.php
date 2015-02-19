@@ -4,6 +4,7 @@ use Repositories\AbstractEloquentRepository;
 use Post;
 use Validator;
 use Redirect;
+use Input;
 
 class EloquentPostRepository extends AbstractEloquentRepository implements PostRepository {
 
@@ -11,34 +12,31 @@ class EloquentPostRepository extends AbstractEloquentRepository implements PostR
         $this->model = $model;
     }
 
-    public function store($data) {
-        $data['title'] = strip_tags($data['title']);
+    public function store() {
 
         $rules = array(
             'title'=>   'required|unique:posts,title|min:5',
-            'body'=>    'required',
-            'user_id' => 'required'
+            'body'=>    'required'
         );
 
         //compare input against validation
-        $validator = Validator::make($data, $rules);
+        $validator = Validator::make(Input::all(), $rules);
 
         //check if data is valid
         if ($validator->passes()) {
             //create new blog post
             $post = new Post();
-            $post->title = $data['title'];
-            $post->body = $data['body'];
-            $post->user_id = $data['user_id'];
+            $post->title = strip_tags(Input::get('title'));
+            $post->body = Input::get('body');
+            $post->user_id = Input::get('user_id');
             //save new post
             $post->save();
-            return Redirect::to('news/'.$post->slug)->with('message', 'Successfully created page!');
+            return Redirect::to('news/'.$post->slug)->with('message', 'Successfully created page.');
         } else {
             return Redirect::back()
                 ->with('error', 'Could not create your blog post')
                 ->withErrors($validator)
-                ->with('old_title', $data['title'])
-                ->with('old_body', $data['body']);
+                ->withInput();
         }
     }
 
@@ -53,7 +51,7 @@ class EloquentPostRepository extends AbstractEloquentRepository implements PostR
         );
         $validator = Validator::make($data, $rules);
         if ($validator->passes()) {
-            $post = BlogPost::findOrFail(Input::get('id'));
+            $post = Post::findOrFail(Input::get('id'));
             $post->title = Input::get('title');
             $post->body = Input::get('body');
             $post->save();

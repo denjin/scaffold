@@ -18,12 +18,6 @@
         </div>
     @endif
 
-    @if(Auth::check())
-        @if(Auth::user()->id == $post->user_id)
-            <div class="alert alert-warning"><span class="glyphicon glyphicon-exclamation-sign"></span>You can edit this post.</div>
-        @endif
-    @endif
-
     <div id="title">
         <h2>{{$post->title}}</h2>
     </div>

@@ -29,7 +29,7 @@ class PostController extends BaseController {
 
 	//Store a newly created resource in storage.
 	public function store() {
-		return $this->post->store(Input::all());
+		return $this->post->store();
 	}
 
 	public function storeSuccess($slug) {

@@ -18,7 +18,7 @@ if(Input::old('body')) {
     {{Form::hidden('id', $post->id)}}
     <input type="hidden" id="title" name="title">
     <input type="hidden" id="body" name="body">
-    
+
     <div class="title-editable" id="post-title">
         <h2>{{ $post->title }}</h2>
     </div>
