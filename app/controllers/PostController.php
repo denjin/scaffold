@@ -7,6 +7,7 @@ class PostController extends BaseController {
 	public function __construct(Post $post) {
 		$this->post = $post;
 		$this->beforeFilter('auth', ['except' => ['index','show']]);
+		$this->beforeFilter('csrf', ['on' => ['store', 'update', 'destroy']]);
 	}
 
 	//Get a list of all posts
