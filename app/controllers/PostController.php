@@ -32,15 +32,6 @@ class PostController extends BaseController {
 		return $this->post->store();
 	}
 
-	public function storeSuccess($slug) {
-		echo "Success";
-		echo $slug;
-	}
-
-	public function storeFail() {
-		echo "Fail";
-	}
-
 
 
 
