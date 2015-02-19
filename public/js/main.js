@@ -9,20 +9,18 @@ var bodyEditor = new MediumEditor('.body-editable', {
     buttonLabels: 'fontawesome'
 });
 
-$('.body-editable').on('input', function() {
-    $a = bodyEditor.serialize();
-    $body = $a['post-body']['value'];
-    $bodyField = document.getElementById('body');
-    $bodyField.value = $body;
-});
 
-$('.title-editable').on('input', function() {
-    $b = titleEditor.serialize();
-    $title = $b['post-title']['value'];
-    $titleField = document.getElementById('title');
-    $titleField.value = $title;
+$('body').on('click', '#form-submit', function(e) {
+    e.preventDefault();
+    //get inputted values
+    $title = titleEditor.serialize();
+    $body = bodyEditor.serialize();
+    //set hidden form fields to be values inputted to clever editor divs
+    document.getElementById('title').value = $title['post-title']['value'];
+    document.getElementById('body').value = $body['post-body']['value'];
+    //submit the form
+    document.getElementById('form').submit();
 });
-
 
 
 
