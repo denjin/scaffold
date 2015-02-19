@@ -76,7 +76,7 @@ class EloquentPostRepository extends AbstractEloquentRepository implements PostR
         }
     }
 
-    public function destroy($post) {
+    public function destroy() {
         $post = Post::findOrFail(Input::get('id'));
         $post->delete();
         return Redirect::to('news/')

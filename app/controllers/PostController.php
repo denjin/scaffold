@@ -17,8 +17,6 @@ class PostController extends BaseController {
 
 	//Display the specified resource.
 	public function show($slug) {
-		//find post by slug
-		//return View::make('posts.single')->with('posts', $this->post->find($id));
 		return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
@@ -46,8 +44,8 @@ class PostController extends BaseController {
 
 
 	//Remove the specified resource from storage.
-	public function destroy($id) {
-		return $this->post->destroy($id);
+	public function destroy() {
+		return $this->post->destroy();
 	}
 
 
