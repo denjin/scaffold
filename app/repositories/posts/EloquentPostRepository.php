@@ -1,12 +1,12 @@
 <?php namespace Repositories\Posts;
 
-use Repositories\AbstractEloquentRepository;
+use Repositories\BaseEloquentRepository;
 use Post;
 use Validator;
 use Redirect;
 use Input;
 
-class EloquentPostRepository extends AbstractEloquentRepository implements PostRepository {
+class EloquentPostRepository extends BaseEloquentRepository implements PostRepository {
 
     public function __construct(Post $model) {
         $this->model = $model;

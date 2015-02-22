@@ -5,7 +5,7 @@
  *
  */
 
-class AbstractEloquentRepository {
+class BaseEloquentRepository {
     protected $model = null;
 
     //Get all entries
