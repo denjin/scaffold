@@ -5,6 +5,7 @@ use Post;
 use Validator;
 use Redirect;
 use Input;
+use StdClass;
 
 class EloquentPostRepository extends BaseEloquentRepository implements PostRepository {
 
@@ -81,6 +82,25 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
         $post->delete();
         return Redirect::to('news/')
             ->with('message', 'Successfully deleted page!');
+    }
+
+
+    //Get paginated results
+    public function findByPage($page = 1, $limit = 10) {
+        //create empty object
+        $results = new StdClass();
+        //push parameters into results object
+        $results->page = $page;
+        $results->limit = $limit;
+        $results->totalItems = 0;
+        $results->items = array();
+        //query the data with the parameters
+        $posts = $this->model->skip($limit * ($page - 1))->take($limit)->get();
+        //add the total items to the results
+        $results->totalItems = $this->model->count();
+        //add the data to the results
+        $results->items = $posts->all();
+        return $results;
     }
 
 }

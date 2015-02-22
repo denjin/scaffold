@@ -2,28 +2,23 @@
 @extends('layouts.master')
 
 @section('content')
+    {{--Post Title--}}
+    <div id="post-title" class="title-editable row">
+        <h1 class="text-center text-"><strong>
+            @if(Input::old('title'))
+                {{strip_tags(Input::old('title'))}}
+            @else
+                Post Title
+            @endif
+        </strong></h1>
+    </div>
 
-
-    {{Form::open(array('action'=>'PostController@store', 'id'=>'form'))}}
-    <input type="hidden" id="title" name="title">
-    <input type="hidden" id="body" name="body">
-    <input type="hidden" id="user_id" name="user_id" value="{{{Auth::user()->id}}}">
-    {{Form::close()}}
-
-    <div class="title-editable" id="post-title"><h2>
-        @if(Input::old('title'))
-            {{strip_tags(Input::old('title'))}}
-        @else
-            Post Title
-        @endif
-    </h2></div>
-
+    {{--Title Errors--}}
     @foreach($errors->get('title') as $message)
         <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>{{ $message }}</div>
     @endforeach
 
-
-
+    {{--Post Body--}}
     <div class="body-editable" id="post-body">
         @if(Input::old('body'))
             {{Input::old('body')}}
@@ -32,15 +27,27 @@
         @endif
     </div>
 
-
+    {{--Body Errors--}}
     @foreach($errors->get('body') as $message)
         <div class="alert alert-danger"><span class="glyphicon glyphicon-exclamation-sign"></span>{{ $message }}</div>
     @endforeach
 
+    {{--Form Errors--}}
+    {{Form::open(array('action'=>'PostController@store', 'id'=>'post-form'))}}
+    <input type="hidden" id="post-form-title" name="title">
+    <input type="hidden" id="post-form-body" name="body">
+    <input type="hidden" id="post-form-user_id" name="user_id" value="{{{Auth::user()->id}}}">
+    {{Form::close()}}
 
-    <div class="modal-footer">
-        <button class="btn btn-success" id="form-submit"><span class="glyphicon glyphicon-ok"></span> Submit</button>
-        <a href="{{action('PostController@index')}}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+    <div class="row" id="post-buttons">
+        <button class="btn btn-success" id="form-submit"><span class="glyphicon glyphicon-ok"></span> Save Changes</button>
+        <a href="{{action('PostController@index')}}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancel Changes</a>
     </div>
 
+@stop
+
+@section('footer')
+    @if(Auth::check())
+        @include('editor')
+    @endif
 @stop

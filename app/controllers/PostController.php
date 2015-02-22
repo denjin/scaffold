@@ -5,7 +5,9 @@ use Presenters\PostPresenter;
 use Repositories\Posts\PostRepository as Post;
 
 class PostController extends BaseController {
+	//Repositories/Post/PostRepository
 	protected $post;
+	//Presenters/Presenter
 	protected $presenter;
 
 	public function __construct(Post $post, Presenter $presenter) {
@@ -20,18 +22,28 @@ class PostController extends BaseController {
 
 	//Get a list of all posts
 	public function index() {
-		return View::make('posts.index')->with('posts', $this->post->all());
+		$page = Input::get('page', 1);
+		$data = $this->post->findByPage($page, 10);
+		$posts = Paginator::make($data->items, $data->totalItems, 10);
+
+		return View::make('posts.index', compact('posts'));
 	}
 
 
 	//Display the specified resource.
 	public function show($slug) {
+		/*
+		//grab the right post
 		$post = $this->post->findByKey('slug', $slug);
+		//if we found the post
 		if($post) {
+			//wrap the post in the post presenter
 			$post = $this->presenter->model($post, new PostPresenter);
+			//make the view
 			return View::make('posts.single', compact('post'));
 		}
-		App::abort(404);
+		*/
+		return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 	//Show the form for creating a new resource.

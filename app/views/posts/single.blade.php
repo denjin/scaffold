@@ -8,11 +8,13 @@
 
     <div class="container-fluid" id="post-container">
         <div id="post-title" class="title-editable row">
-            @if(Input::old('title'))
-                {{strip_tags(Input::old('title'))}}
-            @else
-                <h1 class="text-center text-"><strong>{{$post->title}}</strong></h1>
-            @endif
+            <h1 class="text-center text-"><strong>
+                @if(Input::old('title'))
+                    {{strip_tags(Input::old('title'))}}
+                @else
+                    {{$post->title}}
+                @endif
+            </strong></h1>
         </div>
 
         <div id="post-body" class="body-editable row">

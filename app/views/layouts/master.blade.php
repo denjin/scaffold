@@ -27,9 +27,6 @@
                 @yield('header')
             </div>
         </div>
-
-
-
         <div class="container">
 
             @if(Session::has('message'))
@@ -46,7 +43,6 @@
             <div class="modal-footer">
                 <p class="text-center text-muted">Design and code copyright Chris Luffingham 2015</p>
             </div>
-        </div>
 
         @yield('footer')
     </body>

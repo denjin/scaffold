@@ -5,6 +5,8 @@
  *
  */
 
+use StdClass;
+
 class BaseEloquentRepository {
     protected $model = null;
 
@@ -24,12 +26,21 @@ class BaseEloquentRepository {
     public function findManyByKey($key, $value) {
         return $this->model->where($key, '=', $value)->get();
     }
+
+    /*
     //Get paginated results
-    public function findByPage($limit = 10) {
-        return $this->model->paginate($limit, ['*']);
+    public function findByPage($page = 1, $limit = 10, $with = array()) {
+        $result = new StdClass;
+        $result->page = $page;
+        $result->limit = $limit;
+        $result->totalItems = 0;
+        $result->items = array();
+
+
+
+
+
+
     }
-
-    //Update an entry
-
-    //Remove an entry
+    */
 }
