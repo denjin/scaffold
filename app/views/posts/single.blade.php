@@ -24,7 +24,7 @@
         </div>
 
         <div class="row" id="timestamps">
-            <p class="text-muted small">Post created: {{$post->created_at->format('dS M Y \a\t G:i')}}<br />Last modified: {{$post->updated_at->format('dS M Y \a\t G:i')}}</p>
+            <p class="text-muted small">Post created: {{$post->created_at}}<br />Last modified: {{$post->updated_at}}</p>
         </div>
 
         @if(Auth::check())

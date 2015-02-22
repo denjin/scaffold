@@ -1,11 +1,19 @@
 <?php
 
+use Presenters\Presenter;
+use Presenters\PostPresenter;
 use Repositories\Posts\PostRepository as Post;
 
 class PostController extends BaseController {
+	protected $post;
+	protected $presenter;
 
-	public function __construct(Post $post) {
+	public function __construct(Post $post, Presenter $presenter) {
+		//injected services
 		$this->post = $post;
+		$this->presenter = $presenter;
+
+		//controller action filters
 		$this->beforeFilter('auth', ['except' => ['index','show']]);
 		$this->beforeFilter('csrf', ['on' => ['store', 'update', 'destroy']]);
 	}
@@ -15,11 +23,16 @@ class PostController extends BaseController {
 		return View::make('posts.index')->with('posts', $this->post->all());
 	}
 
+
 	//Display the specified resource.
 	public function show($slug) {
-		return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
+		$post = $this->post->findByKey('slug', $slug);
+		if($post) {
+			$post = $this->presenter->model($post, new PostPresenter);
+			return View::make('posts.single', compact('post'));
+		}
+		App::abort(404);
 	}
-
 
 	//Show the form for creating a new resource.
 	public function create() {
