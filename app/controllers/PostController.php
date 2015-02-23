@@ -32,7 +32,7 @@ class PostController extends BaseController {
 
 	//Display the specified resource.
 	public function show($slug) {
-		/*
+
 		//grab the right post
 		$post = $this->post->findByKey('slug', $slug);
 		//if we found the post
@@ -42,8 +42,8 @@ class PostController extends BaseController {
 			//make the view
 			return View::make('posts.single', compact('post'));
 		}
-		*/
-		return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
+
+		//return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 	//Show the form for creating a new resource.
