@@ -28,7 +28,9 @@ Route::post('login', 'UserController@handleLogin');
 
 Route::get('logout', 'UserController@logout');
 
-Route::get('user/{user}', 'UserController@profile');
+Route::get('users', 'UserController@index');
+
+Route::get('users/{user}', 'UserController@profile');
 
 
 

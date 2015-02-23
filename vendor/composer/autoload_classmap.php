@@ -970,6 +970,7 @@ return array(
     'Presenters\\PostPresenter' => $baseDir . '/app/presenters/PostPresenter.php',
     'Presenters\\Presentable' => $baseDir . '/app/presenters/Presentable.php',
     'Presenters\\Presenter' => $baseDir . '/app/presenters/Presenter.php',
+    'Presenters\\UserPresenter' => $baseDir . '/app/presenters/UserPresenter.php',
     'Psr\\Log\\AbstractLogger' => $vendorDir . '/psr/log/Psr/Log/AbstractLogger.php',
     'Psr\\Log\\InvalidArgumentException' => $vendorDir . '/psr/log/Psr/Log/InvalidArgumentException.php',
     'Psr\\Log\\LogLevel' => $vendorDir . '/psr/log/Psr/Log/LogLevel.php',

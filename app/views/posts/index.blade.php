@@ -12,10 +12,7 @@
             </div>
         @endif
         @foreach($posts as $post)
-            <div class="row bg-info">
-                <p class="text-primary"><a href="{{url('news/'.$post->slug)}}">{{{$post->title}}}</a></p>
-                <small class="text-muted">{{ str_limit(strip_tags($post->body), $limit = 150, $end = '...') }}</small>
-            </div>
+            @include('posts.partials.post_min', array('slug' => $post->slug, 'title' => $post->title, 'body' => str_limit(strip_tags($post->body), $limit = 150, $end = '...')))
         @endforeach
         <div class="row">
             {{ $posts->links() }}

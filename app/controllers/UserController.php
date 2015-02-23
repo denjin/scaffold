@@ -13,6 +13,29 @@ class UserController extends BaseController {
 		$this->presenter = $presenter;
 	}
 
+	public function index() {
+		//get the current page
+		$page = Input::get('page', 1);
+		//
+		$data = $this->user->findByPage($page, 10);
+		$users = Paginator::make($data->items, $data->totalItems, 10);
+
+		return View::make('users.index', compact('users'));
+	}
+
+	public function profile($username) {
+		//grab the right user
+		$user = $this->user->findByKey('username', $username, array('posts'));
+		//if we found the post
+		if($user) {
+			//wrap the post in the post presenter
+			$user = $this->presenter->model($user, new UserPresenter);
+			//make the view
+			//echo $user->posts;
+			return View::make('users.single', compact('user'));
+		}
+	}
+
 	public function register() {
 		return View::make('users.register');
 	}
