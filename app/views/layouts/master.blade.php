@@ -11,24 +11,33 @@
     </head>
 
     <body>
-        <div class="container-fluid">
-            <div class="page-header">
+        <div class="container">
+            <div class="page-header row">
                 <div class="text-center">
                     <h1>{{link_to('/', 'Web App Scaffold')}}</h1>
                 </div>
-                <div class="text-right">
-                    @if(Auth::check())
-                        Logged in as <strong>{{{Auth::user()->username}}}</strong>
-                        {{link_to('logout', 'Logout')}}
-                    @else
-                        {{link_to('login', 'Login')}}
-                    @endif
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="glyphicon glyphicon-user"></span>
+                        @if(Auth::check())
+                            Logged in as <strong>{{{Auth::user()->username}}}</strong>
+                            {{link_to('logout', 'Logout')}}
+                        @else
+                            {{link_to('login', 'Login')}}
+                        @endif
                 </div>
+            </div>
+
+
+
+
+
                 @yield('header')
             </div>
         </div>
         <div class="container">
-
             @if(Session::has('message'))
                 <div class="alert alert-success">
                     <span class="glyphicon glyphicon-ok-circle"></span>{{Session::get('message')}}
@@ -39,6 +48,8 @@
                     <span class="glyphicon glyphicon-exclamation-sign"></span>{{Session::get('error')}}
                 </div>
             @endif
+        </div>
+
             @yield('content')
             <div class="modal-footer">
                 <p class="text-center text-muted">Design and code copyright Chris Luffingham 2015</p>
