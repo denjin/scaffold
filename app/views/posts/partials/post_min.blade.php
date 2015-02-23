@@ -1,4 +1,4 @@
-<div class="row">
+<div class="well">
     <div class="row">
         <h1><a href="{{url('news/'.$slug)}}">{{{$title}}}</a></h1>
     </div>
@@ -11,5 +11,4 @@
     <div class="row">
         <a href="{{url('news/'.$slug)}}" class="btn btn-default btn-sm">Read More</a>
     </div>
-    <hr>
 </div>
