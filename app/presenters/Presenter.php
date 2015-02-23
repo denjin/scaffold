@@ -5,6 +5,8 @@
  * @package Presenters
  */
 
+use Illuminate\Database\Eloquent\Model;
+
 class Presenter {
 	/**
 	 * Returns an instance of a model, wrapped in a presenter
@@ -12,7 +14,7 @@ class Presenter {
 	 * @param Presentable $presenter - the presenter we want to wrap it in
 	 * @return Presentable - returns the presented model
 	 */
-	public function model($model, Presentable $presenter) {
+	public function model(Model $model, Presentable $presenter) {
 		$object = clone $presenter;
 		$object->set($model);
 		return $object;
