@@ -27,20 +27,21 @@ class BaseEloquentRepository {
         return $this->model->where($key, '=', $value)->get();
     }
 
-    /*
     //Get paginated results
-    public function findByPage($page = 1, $limit = 10, $with = array()) {
-        $result = new StdClass;
-        $result->page = $page;
-        $result->limit = $limit;
-        $result->totalItems = 0;
-        $result->items = array();
-
-
-
-
-
-
+    public function findByPage($page = 1, $limit = 10, $sortField = 'created_at', $sortDir = 'desc') {
+        //create empty object
+        $results = new StdClass();
+        //push parameters into results object
+        $results->page = $page;
+        $results->limit = $limit;
+        $results->totalItems = 0;
+        $results->items = array();
+        //query the data with the parameters
+        $posts = $this->model->orderBy($sortField, $sortDir)->skip($limit * ($page - 1))->take($limit)->get();
+        //add the total items to the results
+        $results->totalItems = $this->model->count();
+        //add the data to the results
+        $results->items = $posts->all();
+        return $results;
     }
-    */
 }

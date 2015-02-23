@@ -1,4 +1,9 @@
 <?php namespace Repositories\Posts;
+/**
+ *
+ * This class is contain the store, update and destroy methods unique to the Post entities.
+ *
+ */
 
 use Repositories\BaseEloquentRepository;
 use Post;
@@ -83,24 +88,4 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
         return Redirect::to('news/')
             ->with('message', 'Successfully deleted page!');
     }
-
-
-    //Get paginated results
-    public function findByPage($page = 1, $limit = 10) {
-        //create empty object
-        $results = new StdClass();
-        //push parameters into results object
-        $results->page = $page;
-        $results->limit = $limit;
-        $results->totalItems = 0;
-        $results->items = array();
-        //query the data with the parameters
-        $posts = $this->model->skip($limit * ($page - 1))->take($limit)->get();
-        //add the total items to the results
-        $results->totalItems = $this->model->count();
-        //add the data to the results
-        $results->items = $posts->all();
-        return $results;
-    }
-
 }

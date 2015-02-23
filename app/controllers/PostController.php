@@ -22,7 +22,9 @@ class PostController extends BaseController {
 
 	//Get a list of all posts
 	public function index() {
+		//get the current page
 		$page = Input::get('page', 1);
+		//
 		$data = $this->post->findByPage($page, 10);
 		$posts = Paginator::make($data->items, $data->totalItems, 10);
 

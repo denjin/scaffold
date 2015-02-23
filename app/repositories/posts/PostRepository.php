@@ -7,10 +7,5 @@
  */
 
 interface PostRepository {
-    /*public function all();
-    public function findById($id);
-    public function findBySlug($slug);
-    public function store();
-    public function update($id);
-    public function destroy($id);*/
+
 }
