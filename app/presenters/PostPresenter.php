@@ -12,4 +12,8 @@ class PostPresenter extends BasePresenter {
 	public function created_at() {
 		return $this->resource->created_at->format('dS M Y \a\t G:i');
 	}
+
+	public function updated_at() {
+		return $this->resource->updated_at->format('dS M Y \a\t G:i');
+	}
 }
