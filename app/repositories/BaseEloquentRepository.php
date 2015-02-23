@@ -57,7 +57,6 @@ class BaseEloquentRepository {
      * @param $value - string - field to find
      * @return array of results
      */
-
     public function findManyByKey($key, $value) {
         return $this->model->where($key, '=', $value)->get();
     }
@@ -70,8 +69,7 @@ class BaseEloquentRepository {
      * @param string $sortDir - direction to paginate in
      * @return StdClass
      */
-
-    public function findByPage($page = 1, $limit = 10, $sortField = 'created_at', $sortDir = 'desc') {
+    public function findByPage($page = 1, $limit = 10, $with = array(), $sortField = 'created_at', $sortDir = 'desc') {
         //create empty object
         $results = new StdClass();
         //push parameters into results object
@@ -79,8 +77,10 @@ class BaseEloquentRepository {
         $results->limit = $limit;
         $results->totalItems = 0;
         $results->items = array();
+        //eager load any desired relationships
+        $query = $this->make($with);
         //query the data with the parameters
-        $posts = $this->model->orderBy($sortField, $sortDir)->skip($limit * ($page - 1))->take($limit)->get();
+        $posts = $query->orderBy($sortField, $sortDir)->skip($limit * ($page - 1))->take($limit)->get();
         //add the total items to the results
         $results->totalItems = $this->model->count();
         //add the data to the results

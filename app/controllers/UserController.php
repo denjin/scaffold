@@ -1,23 +1,20 @@
 <?php
 
-use Presenters\Presenter;
-use Presenters\UserPresenter;
 use Repositories\Users\UserRepository as User;
 
 class UserController extends BaseController {
 	protected $user;
 
-	public function __construct(User $user, Presenter $presenter) {
+	public function __construct(User $user) {
 		//injected services
 		$this->user = $user;
-		$this->presenter = $presenter;
 	}
 
 	public function index() {
 		//get the current page
 		$page = Input::get('page', 1);
 		//
-		$data = $this->user->findByPage($page, 10);
+		$data = $this->user->findByPage($page, 10, array('posts'));
 		$users = Paginator::make($data->items, $data->totalItems, 10);
 
 		return View::make('users.index', compact('users'));
@@ -28,10 +25,7 @@ class UserController extends BaseController {
 		$user = $this->user->findByKey('username', $username, array('posts'));
 		//if we found the post
 		if($user) {
-			//wrap the post in the post presenter
-			$user = $this->presenter->model($user, new UserPresenter);
 			//make the view
-			//echo $user->posts;
 			return View::make('users.single', compact('user'));
 		}
 	}

@@ -1,19 +1,14 @@
 <?php
 
-use Presenters\Presenter;
-use Presenters\PostPresenter;
 use Repositories\Posts\PostRepository as Post;
 
 class PostController extends BaseController {
 	//Repositories/Post/PostRepository
 	protected $post;
-	//Presenters/Presenter
-	protected $presenter;
 
-	public function __construct(Post $post, Presenter $presenter) {
+	public function __construct(Post $post) {
 		//injected services
 		$this->post = $post;
-		$this->presenter = $presenter;
 
 		//controller action filters
 		$this->beforeFilter('auth', ['except' => ['index','show']]);
@@ -29,10 +24,14 @@ class PostController extends BaseController {
 		//get the current page
 		$page = Input::get('page', 1);
 		//
-		$data = $this->post->findByPage($page, 10);
-		$posts = Paginator::make($data->items, $data->totalItems, 10);
+		$data = $this->post->findByPage($page, 5);
+		$posts = Paginator::make($data->items, $data->totalItems, 5);
 
-		return View::make('posts.index', compact('posts'));
+		if($posts) {
+			return View::make('posts.index', compact('posts'));
+		}
+
+
 	}
 
 
@@ -47,8 +46,6 @@ class PostController extends BaseController {
 		$post = $this->post->findByKey('slug', $slug, array('user'));
 		//if we found the post
 		if($post) {
-			//wrap the post in the post presenter
-			$post = $this->presenter->model($post, new PostPresenter);
 			//make the view
 			return View::make('posts.single', compact('post'));
 		}

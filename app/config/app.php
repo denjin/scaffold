@@ -122,7 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-		'Repositories\StorageServiceProvider'
+		'Repositories\StorageServiceProvider',
+		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider'
 
 	),
 
