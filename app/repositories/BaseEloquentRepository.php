@@ -11,6 +11,16 @@ class BaseEloquentRepository {
     protected $model = null;
 
     /**
+     * query blueprint for getting relationships
+     * @param array $with
+     * @return mixed
+     */
+    public function make(array $with = array()) {
+        return $this->model->with($with);
+    }
+
+
+    /**
      * find all entries in a table
      * @return array of results
      */
@@ -36,8 +46,9 @@ class BaseEloquentRepository {
      * @return eloquent model
      */
 
-    public function findByKey($key, $value) {
-        return $this->model->where($key, '=', $value)->first();
+    public function findByKey($key, $value, array $with = array()) {
+        $query = $this->make($with);
+        return $query->where($key, '=', $value)->first();
     }
 
     /**

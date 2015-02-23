@@ -17,8 +17,4 @@ class Presenter {
 		$object->set($model);
 		return $object;
 	}
-
-	
-
-
 }

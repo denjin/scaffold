@@ -4,9 +4,12 @@
     <a href="{{url('/news')}}">Back to News</a>
 @stop
 
+
+
 @section('content')
     {{--post container--}}
     <div class="container" id="post-container">
+
         {{--post title--}}
         @if(Input::old('title'))
             @include('posts.partials.title', array('title' => strip_tags(Input::old('title'))))
@@ -32,7 +35,7 @@
         @endforeach
 
         {{--timestamps--}}
-        @include('partials.timestamps', array('created_at' => $post->created_at, 'updated_at' => $post->updated_at))
+        @include('partials.timestamps', array('author' => $post->user->username, 'created_at' => $post->created_at, 'updated_at' => $post->updated_at))
 
         {{--form--}}
         @if(Auth::check())

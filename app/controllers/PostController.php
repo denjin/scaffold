@@ -20,7 +20,11 @@ class PostController extends BaseController {
 		$this->beforeFilter('csrf', ['on' => ['store', 'update', 'destroy']]);
 	}
 
-	//Get a list of all posts
+	/**
+	 * Get a list of all posts
+	 * @return view builder
+	 */
+
 	public function index() {
 		//get the current page
 		$page = Input::get('page', 1);
@@ -32,11 +36,15 @@ class PostController extends BaseController {
 	}
 
 
-	//Display the specified resource.
-	public function show($slug) {
+	/**
+	 * Display the specified resource
+	 * @param $slug - string - the slug to search the posts for
+	 * @return view builder
+	 */
 
+	public function show($slug) {
 		//grab the right post
-		$post = $this->post->findByKey('slug', $slug);
+		$post = $this->post->findByKey('slug', $slug, array('user'));
 		//if we found the post
 		if($post) {
 			//wrap the post in the post presenter
@@ -44,8 +52,6 @@ class PostController extends BaseController {
 			//make the view
 			return View::make('posts.single', compact('post'));
 		}
-
-		//return View::make('posts.single')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 	//Show the form for creating a new resource.

@@ -39,12 +39,9 @@ abstract class BasePresenter implements ArrayAccess {
         return $this->object->$key;
     }
 
-
-
-
     //formats the date_time fields auto-created by laravel
     public function created_at() {
-        return $this->object->created_at->format('dS M Y \a\t G:i');
+        return $this->object->created_at->format('F jS, Y');
     }
 
     public function updated_at() {
