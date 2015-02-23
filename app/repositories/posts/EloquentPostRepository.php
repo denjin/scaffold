@@ -1,8 +1,7 @@
 <?php namespace Repositories\Posts;
+
 /**
- *
  * This class is contain the store, update and destroy methods unique to the Post entities.
- *
  */
 
 use Repositories\BaseEloquentRepository;
@@ -17,6 +16,11 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
     public function __construct(Post $model) {
         $this->model = $model;
     }
+
+    /**
+     * stores an entry in the database
+     * @return mixed
+     */
 
     public function store() {
         //pre-sanitise the input data
@@ -51,6 +55,10 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
         }
     }
 
+    /**
+     * updates an entry in the database
+     * @return mixed
+     */
 
     public function update() {
         //pre-sanitise the input data
@@ -81,6 +89,11 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
                 ->withInput();
         }
     }
+
+    /**
+     * removes an entry from the database
+     * @return mixed
+     */
 
     public function destroy() {
         $post = Post::findOrFail(Input::get('id'));

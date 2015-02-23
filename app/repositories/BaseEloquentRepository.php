@@ -10,24 +10,56 @@ use StdClass;
 class BaseEloquentRepository {
     protected $model = null;
 
-    //Get all entries
+    /**
+     * find all entries in a table
+     * @return array of results
+     */
+
     public function all() {
         return $this->model->all();
     }
-    //Get single entry by primary key
+
+    /**
+     * find a single entry by the primary key
+     * @param $id - int - key to find
+     * @return eloquent model
+     */
+
     public function find($id) {
         return $this->model->find($id);
     }
-    //Get single entry by field
+
+    /**
+     * finds a single entry by a field on a column
+     * @param $key - string - column to search
+     * @param $value - string - field to find
+     * @return eloquent model
+     */
+
     public function findByKey($key, $value) {
         return $this->model->where($key, '=', $value)->first();
     }
-    //Get multiple entries by field
+
+    /**
+     * find many entries by a field on a column
+     * @param $key - string - column to search
+     * @param $value - string - field to find
+     * @return array of results
+     */
+
     public function findManyByKey($key, $value) {
         return $this->model->where($key, '=', $value)->get();
     }
 
-    //Get paginated results
+    /**
+     * gets a paginated set of results
+     * @param int $page - page of results to grab
+     * @param int $limit - number of results to show
+     * @param string $sortField - column to paginate by
+     * @param string $sortDir - direction to paginate in
+     * @return StdClass
+     */
+
     public function findByPage($page = 1, $limit = 10, $sortField = 'created_at', $sortDir = 'desc') {
         //create empty object
         $results = new StdClass();
