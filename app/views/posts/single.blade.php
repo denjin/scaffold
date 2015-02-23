@@ -35,7 +35,9 @@
         @endforeach
 
         {{--timestamps--}}
+        <div class="row" id="timestamps">
         @include('partials.timestamps', array('author' => $post->user->username, 'created_at' => $post->created_at, 'updated_at' => $post->updated_at))
+            </div>
 
         {{--form--}}
         @if(Auth::check())

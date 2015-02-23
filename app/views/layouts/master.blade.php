@@ -36,8 +36,7 @@
 
                 @yield('header')
             </div>
-        </div>
-        <div class="container">
+        <div class="container" id="message-container">
             @if(Session::has('message'))
                 <div class="alert alert-success">
                     <span class="glyphicon glyphicon-ok-circle"></span>{{Session::get('message')}}
