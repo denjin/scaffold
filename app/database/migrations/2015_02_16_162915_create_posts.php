@@ -15,8 +15,9 @@ class CreatePosts extends Migration {
 			$table->increments('id');
 			$table->string('title', 256);
 			$table->text('body');
-			$table->integer('author');
+			$table->integer('user_id');
 			$table->timestamps();
+			$table->string('slug', 256);
 		});
 	}
 

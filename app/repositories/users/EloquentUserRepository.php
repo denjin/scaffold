@@ -7,6 +7,7 @@ use Redirect;
 use Hash;
 use Auth;
 use Input;
+use Mail;
 
 class EloquentUserRepository extends BaseEloquentRepository implements UserRepository {
 
@@ -20,9 +21,9 @@ class EloquentUserRepository extends BaseEloquentRepository implements UserRepos
 
 		//build validation rules
 		$rules = array(
-			'username'=>    'required|alpha_num|unique:users,username|min:3',
-			'email'=>       'required|email|unique:users,email',
-			'password'=>    'required|alpha_num|min:8|confirmed'
+			//'username'=>    'required|alpha_num|unique:users,username|min:3',
+			//'email'=>       'required|email|unique:users,email',
+			//'password'=>    'required|alpha_num|min:8|confirmed'
 		);
 
 		//compare input against validation
@@ -37,6 +38,14 @@ class EloquentUserRepository extends BaseEloquentRepository implements UserRepos
 			$user->email = Input::get('email');
 			//save user to database
 			$user->save();
+
+			//send user an email saying hello
+			Mail::send('emails.welcome', $data, function($message) use ($user) {
+				$message    ->to($user->email)
+							->subject('Welcome to our website');
+			});
+
+
 
 			return Redirect::back()
 				->with('message', 'Account Created');
