@@ -1,9 +1,10 @@
+body { padding-top: 70px; }
+
 #login-box {
-    background: #eee;
     padding: 3px;
     border-bottom: solid 1px #bbb;
     border-left: solid 1px #bbb;
     position: fixed;
-    top: 0;
+    top: 50px;
     right: 0;
 }

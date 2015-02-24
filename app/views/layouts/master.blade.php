@@ -13,15 +13,16 @@
 
     <body>
         <div class="container">
-            <div class="page-header row">
-                <div class="text-center">
-                    <h1>{{link_to('/', 'Web App Scaffold')}}</h1>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Scaffold</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/news">News</a></li>
+                    </ul>
                 </div>
-            </div>
-
-            <div class="row">
-
-            </div>
+            </nav>
 
 
 
