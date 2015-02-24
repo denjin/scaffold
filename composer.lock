@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cd745f6cc43c72f7805cbcb469e3cbed",
+    "hash": "8debbde463c0e1cf0d71969b48114f14",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -136,6 +136,54 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "time": "2014-01-17 12:21:18"
+        },
+        {
+            "name": "davejamesmiller/laravel-breadcrumbs",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davejamesmiller/laravel-breadcrumbs.git",
+                "reference": "63d01440b188a517d1d5c0be3baff51911565bf0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davejamesmiller/laravel-breadcrumbs/zipball/63d01440b188a517d1d5c0be3baff51911565bf0",
+                "reference": "63d01440b188a517d1d5c0be3baff51911565bf0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~4.0",
+                "illuminate/view": "~4.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.0",
+                "phpunit/phpunit": "4.0.*",
+                "satooshi/php-coveralls": "~0.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DaveJamesMiller\\Breadcrumbs": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT License"
+            ],
+            "authors": [
+                {
+                    "name": "Dave James Miller",
+                    "email": "dave@davejamesmiller.com",
+                    "homepage": "http://davejamesmiller.com/"
+                }
+            ],
+            "description": "A simple Laravel-style way to create breadcrumbs in Laravel 4.",
+            "homepage": "https://github.com/davejamesmiller/laravel-breadcrumbs",
+            "keywords": [
+                "laravel"
+            ],
+            "time": "2015-02-08 18:49:58"
         },
         {
             "name": "filp/whoops",

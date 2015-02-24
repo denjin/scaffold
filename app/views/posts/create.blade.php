@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('header')
+    {{ Breadcrumbs::render() }}
+@stop
+
 @section('content')
     {{--post container--}}
     <div class="container" id="post-container">
@@ -29,8 +33,8 @@
 
         {{--form--}}
         {{Form::open(array('action'=>'PostController@store', 'id'=>'post-form'))}}
-        <input type="text" id="post-form-title" name="title">
-        <input type="text" id="post-form-body" name="body">
+        <input type="hidden" id="post-form-title" name="title">
+        <input type="hidden" id="post-form-body" name="body">
         <input type="hidden" id="post-form-user_id" name="user_id" value="{{{Auth::user()->id}}}">
         {{Form::close()}}
 

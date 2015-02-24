@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('header')
-
+    {{ Breadcrumbs::render() }}
 @stop
 @section('content')
     <div class="container">

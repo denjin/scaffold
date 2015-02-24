@@ -12,9 +12,11 @@
 */
 
 //Build the homepage view
-Route::get('/', function() {
+Route::get('/', array(
+	'as' => 'home',
+	function() {
 	return View::make('welcome');
-});
+}));
 
 
 //form to register a new account
@@ -28,9 +30,13 @@ Route::post('login', 'UserController@handleLogin');
 
 Route::get('logout', 'UserController@logout');
 
-Route::get('users', 'UserController@index');
+Route::get('users', array(
+		'as' => 'users',
+		'uses' => 'UserController@index'));
 
-Route::get('users/{user}', 'UserController@profile');
+Route::get('users/{user}', array(
+	'as' => 'users.profile',
+	'uses' => 'UserController@profile'));
 
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <a href="{{url('/users')}}">Back to Users</a>
+    {{ Breadcrumbs::render('users.profile', $user) }}
 @stop
 
 

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <a href="{{url('/news')}}">Back to News</a>
+    {{ Breadcrumbs::render('news.show', $post) }}
 @stop
 
 
@@ -9,6 +9,7 @@
 @section('content')
     {{--post container--}}
     <div class="container" id="post-container">
+
 
         {{--post title--}}
         @if(Input::old('title'))

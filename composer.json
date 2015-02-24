@@ -6,7 +6,8 @@
 	"require": {
 	  "laravel/framework": "4.2.*",
 	  "cviebrock/eloquent-sluggable": "~2.0",
-	  "mccool/laravel-auto-presenter": "~2.2"
+	  "mccool/laravel-auto-presenter": "~2.2",
+		"davejamesmiller/laravel-breadcrumbs": "2.*"
 	},
 	"autoload": {
 		"classmap": [

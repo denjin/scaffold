@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 		'Repositories\StorageServiceProvider',
-		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider'
+		'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
+		'DaveJamesMiller\Breadcrumbs\ServiceProvider'
 
 	),
 
@@ -157,6 +158,7 @@ return array(
 		'Artisan'         => 'Illuminate\Support\Facades\Artisan',
 		'Auth'            => 'Illuminate\Support\Facades\Auth',
 		'Blade'           => 'Illuminate\Support\Facades\Blade',
+		'Breadcrumbs'     => 'DaveJamesMiller\Breadcrumbs\Facade',
 		'Cache'           => 'Illuminate\Support\Facades\Cache',
 		'ClassLoader'     => 'Illuminate\Support\ClassLoader',
 		'Config'          => 'Illuminate\Support\Facades\Config',

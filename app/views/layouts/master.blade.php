@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{asset('/css/medium-editor-insert.css')}}">
         <link rel="stylesheet" href="{{asset('/css/themes/bootstrap.min.css')}}">
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{asset('/css/base.css')}}">
     </head>
 
     <body>
@@ -19,15 +20,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
-                    <span class="glyphicon glyphicon-user"></span>
-                        @if(Auth::check())
-                            Logged in as <strong>{{{Auth::user()->username}}}</strong>
-                            {{link_to('logout', 'Logout')}}
-                        @else
-                            {{link_to('login', 'Login')}}
-                        @endif
-                </div>
+
             </div>
 
 
@@ -35,6 +28,7 @@
 
 
                 @yield('header')
+
             </div>
         <div class="container" id="message-container">
             @if(Session::has('message'))
@@ -55,5 +49,14 @@
             </div>
 
         @yield('footer')
+        <div id="login-box">
+            <span class="glyphicon glyphicon-user"></span>
+            @if(Auth::check())
+                Logged in as <strong>{{{Auth::user()->username}}}</strong>
+                {{link_to('logout', 'Logout')}}
+            @else
+                {{link_to('login', 'Login')}}
+            @endif
+        </div>
     </body>
 </html>

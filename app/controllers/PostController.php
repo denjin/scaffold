@@ -1,5 +1,4 @@
 <?php
-
 use Repositories\Posts\PostRepository as Post;
 
 class PostController extends BaseController {
