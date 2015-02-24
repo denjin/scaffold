@@ -4,6 +4,7 @@
 @stop
 
 @section('content')
+    <div class="container">
     {{Form::open(array('action'=>'UserController@handleLogin'))}}
     <div class="form-group">
         <label for="username">Username:</label>
@@ -17,4 +18,5 @@
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user"></span> Login</button>
     </div>
     {{Form::close()}}
+    </div>
 @stop

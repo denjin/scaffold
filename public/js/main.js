@@ -5,6 +5,7 @@ saveButton.disabled = true;
 
 // initializing editors
 var titleEditor = new MediumEditor('.title-editable', {
+    disableReturn: true,
     disableToolbar: true,
     disablePlaceholders: true,
     buttonLabels: 'fontawesome'
