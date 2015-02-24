@@ -8,3 +8,13 @@ body { padding-top: 70px; }
     top: 50px;
     right: 0;
 }
+
+.button-panel {
+    text-align: center;
+    width: 100%;
+    border-top: solid 1px #bbb;
+    padding: 3px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}

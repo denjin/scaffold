@@ -1,3 +1,8 @@
+var saveButton = document.getElementById('form-submit');
+var cancelButton = document.getElementById('form-cancel');
+
+saveButton.disabled = true;
+
 // initializing editors
 var titleEditor = new MediumEditor('.title-editable', {
     disableToolbar: true,
@@ -8,6 +13,11 @@ var titleEditor = new MediumEditor('.title-editable', {
 var bodyEditor = new MediumEditor('.body-editable', {
     disablePlaceholders: true,
     buttonLabels: 'fontawesome'
+});
+
+$('.body-editable').on('input', function() {
+    saveButton.disabled = false;
+    $(cancelButton).removeClass('disabled');
 });
 
 

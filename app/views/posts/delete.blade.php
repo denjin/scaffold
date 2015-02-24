@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="page-header"><h2>Delete a Blog Post?</h2></div>
+    <div class="container">
     {{Form::model($post, array('method' => 'DELETE', 'route' => array('news.destroy', $post->id)))}}
     {{Form::hidden('id', $post->id)}}
         <div class="alert alert-danger">
@@ -13,4 +14,5 @@
     </div>
 
     {{Form::close()}}
+    </div>
 @stop

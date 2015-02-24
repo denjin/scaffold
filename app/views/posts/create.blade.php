@@ -38,17 +38,18 @@
         <input type="hidden" id="post-form-user_id" name="user_id" value="{{{Auth::user()->id}}}">
         {{Form::close()}}
 
-        {{--form buttons--}}
-        <div class="row" id="post-buttons">
-            <div class="btn-group">
-            <button class="btn btn-success" id="form-submit"><span class="glyphicon glyphicon-ok"></span> Save Changes</button>
-            <a href="{{action('PostController@index')}}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancel Changes</a>
-                </div>
-        </div>
+
     </div>
 @stop
 
 @section('footer')
+    {{--form buttons--}}
+    <div class="button-panel" id="post-buttons">
+        <div class="btn-group">
+            <button class="btn btn-success" id="form-submit"><span class="glyphicon glyphicon-ok"></span> Save Changes</button>
+            <a href="{{action('PostController@index')}}" class="btn btn-warning"><span class="glyphicon glyphicon-remove"></span> Cancel Changes</a>
+        </div>
+    </div>
     @if(Auth::check())
         @include('editor')
     @endif
