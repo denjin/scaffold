@@ -25,7 +25,10 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
     public function store() {
         //pre-sanitise the input data
         $data = Input::all();
+        //clean up the inputted title (medium editor has a tendency to add junk to the input and we just want raw text for the title
         $data['title'] = trim(strip_tags($data['title']));
+        $data['title'] = str_replace('&nbsp;', ' ', $data['title']);
+
         //build validation rules
         $rules = array(
             'title'=>   'required|unique:posts,title|min:5',

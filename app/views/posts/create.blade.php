@@ -27,10 +27,12 @@
             @include('partials.warning', array('message' => $message))
         @endforeach
 
+        <div class="markdown"></div>
+
         {{--form--}}
         {{Form::open(array('action'=>'PostController@store', 'id'=>'post-form'))}}
-        <input type="hidden" id="post-form-title" name="title">
-        <input type="hidden" id="post-form-body" name="body">
+        <input type="text" id="post-form-title" name="title">
+        <input type="text" id="post-form-body" name="body">
         <input type="hidden" id="post-form-user_id" name="user_id" value="{{{Auth::user()->id}}}">
         {{Form::close()}}
 
