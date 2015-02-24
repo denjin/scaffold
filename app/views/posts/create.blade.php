@@ -27,8 +27,6 @@
             @include('partials.warning', array('message' => $message))
         @endforeach
 
-        <div class="markdown"></div>
-
         {{--form--}}
         {{Form::open(array('action'=>'PostController@store', 'id'=>'post-form'))}}
         <input type="text" id="post-form-title" name="title">
