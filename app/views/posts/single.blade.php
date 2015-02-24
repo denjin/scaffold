@@ -42,12 +42,6 @@
 
         {{--form--}}
         @if(Auth::check())
-            {{Form::model($post, array('method' => 'PUT', 'route' => array('news.update', $post->id), 'id'=>'post-form'))}}
-            {{Form::hidden('id', $post->id)}}
-            <input type="hidden" id="post-form-title" name="title">
-            <input type="hidden" id="post-form-body" name="body">
-            {{Form::close()}}
-
 
         @endif
     </div>
@@ -55,16 +49,12 @@
 
 @section('footer')
     @if(Auth::check())
-    {{--form buttons--}}
-    <div class="button-panel" id="post-buttons">
-        <small>Admin Panel</small><br />
-        <div class="btn-group">
-            <button class="btn btn-success" id="form-submit"><span class="glyphicon glyphicon-ok"></span> Save Changes</button>
-            <a href="{{action('PostController@index')}}" class="btn btn-warning disabled" id="form-cancel"><span class="glyphicon glyphicon-remove"></span> Cancel Changes</a>
-            <a href="{{url('news/'.$post->slug.'/delete')}}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Delete Post</a>
-        </div>
-    </div>
-
-@include('editor')
-@endif
+        {{Form::model($post, array('method' => 'PUT', 'route' => array('news.update', $post->id), 'id'=>'post-form'))}}
+        {{Form::hidden('id', $post->id)}}
+        <input type="hidden" id="post-form-title" name="title">
+        <input type="hidden" id="post-form-body" name="body">
+        {{Form::close()}}
+        @include('posts.partials.buttons', array('slug' => $post->slug, 'delete' => true))
+        @include('editor')
+    @endif
 @stop

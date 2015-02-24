@@ -1,4 +1,7 @@
-body { padding-top: 70px; }
+body {
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
 
 #login-box {
     padding: 3px;
@@ -10,6 +13,7 @@ body { padding-top: 70px; }
 }
 
 .button-panel {
+    background: #eee;
     text-align: center;
     width: 100%;
     border-top: solid 1px #bbb;

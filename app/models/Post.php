@@ -6,6 +6,7 @@ use McCool\LaravelAutoPresenter\PresenterInterface;
 
 class Post extends Eloquent implements SluggableInterface, PresenterInterface {
 
+
     use SluggableTrait;
 
     protected $sluggable = array(

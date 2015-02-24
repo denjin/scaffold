@@ -15,6 +15,11 @@ var bodyEditor = new MediumEditor('.body-editable', {
     buttonLabels: 'fontawesome'
 });
 
+$('.title-editable').on('input', function() {
+    saveButton.disabled = false;
+    $(cancelButton).removeClass('disabled');
+});
+
 $('.body-editable').on('input', function() {
     saveButton.disabled = false;
     $(cancelButton).removeClass('disabled');
@@ -31,5 +36,4 @@ $('body').on('click', '#form-submit', function(e) {
     document.getElementById('post-form-body').value = $body['post-body']['value'];
     //submit the form
     document.getElementById('post-form').submit();
-
 });
