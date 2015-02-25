@@ -21,6 +21,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="/news">News</a></li>
                     </ul>
+                    <ul class="nav navbar-nav">
+                        <li><a data-toggle="modal" data-target="#contact-modal" href="#">Contact</a></li>
+                    </ul>
                 </div>
             </nav>
 
@@ -63,5 +66,6 @@
             @endif
         </div>
 
+    @include('contact.contact')
     </body>
 </html>

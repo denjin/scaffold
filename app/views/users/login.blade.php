@@ -8,7 +8,6 @@
                 </div>
                 {{Form::open(array('action'=>'UserController@handleLogin'))}}
                     <div class="modal-body">
-
                             <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input type="text" name="username" class="form-control" id="username" placeholder="Enter your username">

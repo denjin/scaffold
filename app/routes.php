@@ -44,3 +44,10 @@ Route::get('users/{user}', array(
 
 Route::resource('news', 'PostController');
 Route::get('news/{post}/delete', 'PostController@delete');
+
+
+
+
+//contact form
+Route::get('contact', 'contactController@contact');
+Route::post('contact', 'contactController@handleContact');
