@@ -44,7 +44,11 @@
 
 @section('footer')
     @if(Auth::check())
-        @include('posts.partials.buttons', array('delete' => false))
-        @include('editor')
+        {{--form buttons--}}
+        <div class="button-panel" id="post-buttons">
+            <small>Admin Panel</small><br />
+            @include('posts.partials.buttons')
+        </div>
+        @include('includes.editor_js')
     @endif
 @stop
