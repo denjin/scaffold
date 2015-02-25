@@ -50,7 +50,8 @@ class UserController extends BaseController {
 
 	public function handleLogin() {
 		if(Auth::attempt(Input::only('username', 'password'))) {
-			return Redirect::intended('/');
+			return Redirect::back()
+				->with('message', 'You are now logged in.');
 		} else {
 			return Redirect::back()
 				->withInput()

@@ -17,7 +17,7 @@ class ContactController extends BaseController {
 			'last-name' => 'required|alpha',
 			'phone-number' => 'numeric|min:8',
 			'email' => 'required|email',
-			'message' => 'required|min:25'
+			'body' => 'required|min:25'
 		);
 
 		$validator = Validator::make($data, $rules);
@@ -36,6 +36,3 @@ class ContactController extends BaseController {
 		}
 	}
 }
-
-
-

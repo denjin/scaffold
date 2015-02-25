@@ -27,8 +27,8 @@
                         <input type="text" id="email" name="email" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" class="form-control" rows="6"></textarea>
+                        <label for="body">Message:</label>
+                        <textarea id="body" name="body" class="form-control" rows="6"></textarea>
                     </div>
 
                 </div>
