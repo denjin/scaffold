@@ -4,10 +4,12 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-	  "laravel/framework": "4.2.*",
-	  "cviebrock/eloquent-sluggable": "~2.0",
-	  "mccool/laravel-auto-presenter": "~2.2",
-		"davejamesmiller/laravel-breadcrumbs": "2.*"
+	  	"laravel/framework": "4.2.*",
+	  	"cviebrock/eloquent-sluggable": "~2.0",
+	  	"mccool/laravel-auto-presenter": "~2.2",
+		"davejamesmiller/laravel-breadcrumbs": "2.*",
+		"artdarek/oauth-4-laravel": "dev-master"
+
 	},
 	"autoload": {
 		"classmap": [

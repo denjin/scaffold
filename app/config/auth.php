@@ -67,5 +67,4 @@ return array(
 		'expire' => 60,
 
 	),
-
 );

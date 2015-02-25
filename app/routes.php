@@ -51,3 +51,5 @@ Route::get('news/{post}/delete', 'PostController@delete');
 //contact form
 Route::get('contact', 'contactController@contact');
 Route::post('contact', 'contactController@handleContact');
+
+Route::get('socialLogin', 'UserController@loginWithFacebook');
