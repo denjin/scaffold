@@ -55,6 +55,7 @@
         <input type="hidden" id="post-form-body" name="body">
         {{Form::close()}}
         @include('posts.partials.buttons', array('slug' => $post->slug, 'delete' => true))
-        @include('editor')
+
+        @include('includes.editor_js')
     @endif
 @stop

@@ -48,16 +48,20 @@
             <div class="modal-footer">
                 <p class="text-center text-muted">Design and code copyright Chris Luffingham 2015</p>
             </div>
-
+        @include('includes.bootstrap_js')
         @yield('footer')
+
+        {{--login / logout buttons--}}
         <div id="login-box">
-            <span class="glyphicon glyphicon-user"></span>
             @if(Auth::check())
-                Logged in as <strong>{{{Auth::user()->username}}}</strong>
-                {{link_to('logout', 'Logout')}}
+                <a href="{{url('logout')}}" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-user"></span> Logout</a>
             @else
-                {{link_to('login', 'Login')}}
+                <button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#login-modal">
+                    <span class="glyphicon glyphicon-user"></span> Login
+                </button>
+                @include('users.login')
             @endif
         </div>
+
     </body>
 </html>
