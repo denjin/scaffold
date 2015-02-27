@@ -4,6 +4,6 @@
  * @package Repositories\Posts
  */
 
-interface PostRepository {
+interface PostRepositoryInterface {
 
 }

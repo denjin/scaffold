@@ -3,7 +3,6 @@
 use Illuminate\Support\ServiceProvider;
 
 class StorageServiceProvider extends ServiceProvider {
-
     public function register() {
         $this->app->bind(
             'Repositories\Users\UserRepository',
@@ -11,9 +10,8 @@ class StorageServiceProvider extends ServiceProvider {
         );
 
         $this->app->bind(
-            'Repositories\Posts\PostRepository',
+            'Repositories\Posts\PostRepositoryInterface',
             'Repositories\Posts\EloquentPostRepository'
         );
     }
-
 }

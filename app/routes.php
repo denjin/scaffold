@@ -52,4 +52,6 @@ Route::get('news/{post}/delete', 'PostController@delete');
 Route::get('contact', 'contactController@contact');
 Route::post('contact', 'contactController@handleContact');
 
-Route::get('socialLogin', 'UserController@loginWithFacebook');
+
+//Social Authentication - Authenticate via external provider
+Route::get('auth/facebook', array('uses' => 'AuthenticateController@facebook', 'as' => 'authenticate.facebook'));

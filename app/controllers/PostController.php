@@ -1,5 +1,5 @@
 <?php
-use Repositories\Posts\PostRepository as Post;
+use Repositories\Posts\PostRepositoryInterface as Post;
 
 class PostController extends BaseController {
 	//Repositories/Post/PostRepository
@@ -57,7 +57,7 @@ class PostController extends BaseController {
 
 	//Store a newly created resource in storage.
 	public function store() {
-		return $this->post->store();
+		return $this->post->store(Input::all());
 	}
 
 
@@ -74,7 +74,7 @@ class PostController extends BaseController {
 
 	//Remove the specified resource from storage.
 	public function destroy() {
-		return $this->post->destroy();
+		return $this->post->destroy(Input::all());
 	}
 
 

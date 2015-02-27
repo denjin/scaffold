@@ -16,6 +16,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
+	protected $fillable = array('oauth_token', 'oauth_token_secret');
+
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -37,6 +39,10 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function posts(){
 		return $this->hasMany('Post');
+	}
+
+	public function comments() {
+		return $this->hasMany('Comment');
 	}
 
 }

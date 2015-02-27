@@ -8,10 +8,9 @@ use Repositories\BaseEloquentRepository;
 use Post;
 use Validator;
 use Redirect;
-use Input;
 use StdClass;
 
-class EloquentPostRepository extends BaseEloquentRepository implements PostRepository {
+class EloquentPostRepository extends BaseEloquentRepository implements PostRepositoryInterface {
 
     public function __construct(Post $model) {
         $this->model = $model;
@@ -21,10 +20,7 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
      * stores an entry in the database
      * @return mixed
      */
-
-    public function store() {
-        //pre-sanitise the input data
-        $data = Input::all();
+    public function store(array $data) {
         //clean up the inputted title (medium editor has a tendency to add junk to the input and we just want raw text for the title
         $data['title'] = trim(strip_tags($data['title']));
         $data['title'] = str_replace('&nbsp;', ' ', $data['title']);
@@ -43,8 +39,8 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
             //create new blog post
             $post = new Post();
             $post->title = $data['title'];
-            $post->body = Input::get('body');
-            $post->user_id = Input::get('user_id');
+            $post->body = $data['body'];
+            $post->user_id = $data['user_id'];
             //save new post
             $post->save();
             return Redirect::to('news/'.$post->slug)
@@ -62,10 +58,7 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
      * updates an entry in the database
      * @return mixed
      */
-
-    public function update() {
-        //pre-sanitise the input data
-        $data = Input::all();
+    public function update(array $data) {
         $data['title'] = trim(strip_tags($data['title']));
 
         //build validation rules
@@ -74,12 +67,12 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
             'body'=>    'required'
         );
         //compare input against validation
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make($data, $rules);
         if ($validator->passes()) {
             //find the post that is to be updated
-            $post = Post::findOrFail(Input::get('id'));
+            $post = Post::findOrFail($data['id']);
             $post->title = $data['title'];
-            $post->body = Input::get('body');
+            $post->body = $data['body'];
             //save the new data over the top
             $post->save();
             //redirect back to the page
@@ -97,9 +90,8 @@ class EloquentPostRepository extends BaseEloquentRepository implements PostRepos
      * removes an entry from the database
      * @return mixed
      */
-
-    public function destroy() {
-        $post = Post::findOrFail(Input::get('id'));
+    public function destroy($data) {
+        $post = Post::findOrFail($data['id']);
         $post->delete();
         return Redirect::to('news/')
             ->with('message', 'Successfully deleted page!');

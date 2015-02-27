@@ -14,14 +14,16 @@ class Post extends Eloquent implements SluggableInterface, PresenterInterface {
         'save_to'    => 'slug',
     );
 
-    protected $fillable = array('title', 'body', 'user_id,');
+    //protected $fillable = array('title', 'body', 'user_id,');
 
-    public function Post() {
-
-    }
+    public function Post() {}
 
     public function user() {
         return $this->belongsTo('User', 'user_id');
+    }
+
+    public function comments() {
+        return $this->hasMany('Post');
     }
 
     public function getPresenter() {

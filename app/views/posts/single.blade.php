@@ -45,6 +45,13 @@
 
         @endif
     </div>
+
+
+    <div class="container" id="comments-container">
+        @include('comments.comments_list')
+
+    </div>
+
 @stop
 
 @section('footer')
