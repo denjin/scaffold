@@ -18,7 +18,6 @@ class PostController extends BaseController {
 	 * Get a list of all posts
 	 * @return view builder
 	 */
-
 	public function index() {
 		//get the current page
 		$page = Input::get('page', 1);
@@ -29,17 +28,13 @@ class PostController extends BaseController {
 		if($posts) {
 			return View::make('posts.index', compact('posts'));
 		}
-
-
 	}
-
 
 	/**
 	 * Display the specified resource
 	 * @param $slug - string - the slug to search the posts for
 	 * @return view builder
 	 */
-
 	public function show($slug) {
 		//grab the right post
 		$post = $this->post->findByKey('slug', $slug, array('user'));
@@ -50,29 +45,45 @@ class PostController extends BaseController {
 		}
 	}
 
-	//Show the form for creating a new resource.
+	/**
+	 * Show the form for creating a new resource
+	 * @return mixed
+	 */
 	public function create() {
 		return View::make('posts.create');
 	}
 
-	//Store a newly created resource in storage.
+	/**
+	 * Store a newly created resource in storage.
+	 * @return mixed
+	 */
 	public function store() {
 		return $this->post->store(Input::all());
 	}
 
 
-	//Update the specified resource in storage.
+	/**
+	 * Update the specified resource in storage.
+	 * @return mixed
+	 */
 	public function update() {
 		return $this->post->update(Input::all());
 	}
 
-	//Show the form to delete a post
+	/**
+	 * Show the form to delete a post
+	 * @param $slug - string - the key to search for
+	 * @return mixed
+	 */
 	public function delete($slug) {
 		return View::make('posts.delete')->with('post', $this->post->findByKey('slug', $slug));
 	}
 
 
-	//Remove the specified resource from storage.
+	/**
+	 * Remove the specified resource from storage.
+	 * @return mixed
+	 */
 	public function destroy() {
 		return $this->post->destroy(Input::all());
 	}
