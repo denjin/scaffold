@@ -9,7 +9,10 @@ class ContactController extends BaseController {
 		return View::make('contact.contact');
 	}
 
-
+	/**
+	 * process the contact form
+	 * @return mixed
+	 */
 	public function handleContact() {
 		$data = Input::all();
 		$rules = array(
