@@ -42,3 +42,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    (function($) {
+        function processForm(e) {
+            $.ajax({
+                url: 'contact',
+                method: 'post',
+                data: JSON.stringify($('#contact-form').serializeArray()),
+                contentType : 'application/json',
+                success: function(data, textStatus, jqXhr) {
+                    console.log('success');
+                },
+                error: function(jqXhr, textStatus, errorThrown) {
+                    console.log('fail')
+                }
+            });
+            e.preventDefault();
+        }
+        $('#contact-form').submit(processForm);
+    })(jQuery);
+</script>
