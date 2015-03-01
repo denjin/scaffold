@@ -5,12 +5,12 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Contact</h4>
-                    <div class="error alert alert-danger"></div>
-                    <div class="success alert alert-success"></div>
                 </div>
                 {{--form--}}
                 {{Form::open(array('url'=>'contact', 'id'=>'contact-form'))}}
                 <div class="modal-body">
+                    <div class="error alert alert-danger"></div>
+                    <div class="success alert alert-success"></div>
 
                     <div class="form-group">
                         <label for="first-name">First Name:</label>
@@ -60,7 +60,6 @@
                     if(data.success === false) {
                         $('.error').append(data.message);
                         $('.error').show();
-
                     } else {
                         $('.success').append(data.message);
                         $('.success').show();
