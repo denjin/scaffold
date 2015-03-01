@@ -49,8 +49,8 @@ Route::get('news/{post}/delete', 'PostController@delete');
 
 
 //contact form
-Route::get('contact', 'contactController@contact');
-Route::post('contact', 'contactController@handleContact');
+Route::get('contact', 'ContactController@contact');
+Route::post('contact', 'ContactController@handleContact');
 
 
 //Social Authentication - Authenticate via external provider

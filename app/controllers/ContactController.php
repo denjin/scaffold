@@ -14,7 +14,9 @@ class ContactController extends BaseController {
 	 * @return mixed
 	 */
 	public function handleContact() {
+		//grab input
 		$json = Input::json()->all();
+		//parse input
 		$data = array(
 			'first-name' => $json[1]['value'],
 			'last-name' => $json[2]['value'],
@@ -22,7 +24,7 @@ class ContactController extends BaseController {
 			'email' => $json[4]['value'],
 			'body' => $json[5]['value']
 		);
-
+		//build validation rules
 		$rules = array(
 			'first-name' => 'required|alpha',
 			'last-name' => 'required|alpha',
@@ -30,28 +32,20 @@ class ContactController extends BaseController {
 			'email' => 'required|email',
 			'body' => 'required|min:25'
 		);
-
+		//validate input
 		$validator = Validator::make($data, $rules);
-		$response = array();
+		//check if valid input
 		if ($validator->passes()) {
+			//send email
 			Mail::queue('emails.contact', $data, function($message) use ($data) {
 				$message->from($data['email'], $data['first-name']);
 				$message->to('laravelemailtest@gmail.com')->subject('Website Enquiry');
 			});
-			$response['status'] = 'success';
-			$response['message'] = 'Thankyou for your message.';
-			return Response::json($response);
-			//return Redirect::back()->with('message', 'Thankyou for your message');
+			//respond
+			return Response::json(array('success' => true, 'errors' => '', 'message' => 'Thankyou for your message.'));
 		} else {
-			$response['status'] = 'failure';
-			$response['message'] = 'Could not send your message';
-			$errors = $validator->getMessageBag()->toArray();
-			$response['errors'] = array($errors);
-			return Response::json($response);
-			/*return Redirect::back()
-				->withInput()
-				->with('error', "Could not send your message")
-				->withErrors($validator);*/
+			//respond
+			return Response::json(array('success' => false, 'errors' => $validator, 'message' => 'We could not send your message.'));
 		}
 	}
 }

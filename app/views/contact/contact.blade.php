@@ -5,6 +5,8 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Contact</h4>
+                    <div class="error alert alert-danger"></div>
+                    <div class="success alert alert-success"></div>
                 </div>
                 {{--form--}}
                 {{Form::open(array('url'=>'contact', 'id'=>'contact-form'))}}
@@ -45,17 +47,27 @@
 
 <script>
     (function($) {
+        //hide error messages
+        $('.error').hide().empty();
+        $('.success').hide().empty();
         function processForm(e) {
             $.ajax({
                 url: 'contact',
                 method: 'post',
                 data: JSON.stringify($('#contact-form').serializeArray()),
                 contentType : 'application/json',
-                success: function(data, textStatus, jqXhr) {
-                    console.log('success');
+                success: function(data) {
+                    if(data.success === false) {
+                        $('.error').append(data.message);
+                        $('.error').show();
+
+                    } else {
+                        $('.success').append(data.message);
+                        $('.success').show();
+                    }
                 },
-                error: function(jqXhr, textStatus, errorThrown) {
-                    console.log('fail')
+                error: function(xhr, textStatus, thrownError) {
+                    alert('Something went wrong. Please Try again later...');
                 }
             });
             e.preventDefault();
